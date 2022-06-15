@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+	<head>
+		<title>
+		Pizza
+		</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+	  <div class="kotak">
+	  <h1>Pizza</h1>
+	  <form method="post" name="autoSumForm">
+		<table>
+			<tr>
+			<td>
+				<div class="box1" align="center">
+								<img src="box1.jpg" width='100' height='100'>
+								<h3>PIZZA_NAME1</h3>
+								<h3 align="left">$8</h3>
+								<input type="radio" id="option1" name="pizza" value="8" onclick="pizzaChoice()" onFocus="startCalc();" onBlur="stopCalc();">
+				</div>
+			</td>
+			<td>
+				<div class="box2" align="center">
+						<img src="box2.jpg" width='100' height='100'>
+						<h3>PIZZA_NAME2</h3>
+						<h3 align="left">$10</h3>
+						<input type="radio" id="option2" name="pizza" value="10" onclick="pizzaChoice()" onFocus="startCalc();" onBlur="stopCalc();">
+				</div>
+			</td>
+			<td>
+				<div class="box3" align="center">
+						<img src="box3.jpg" width='100' height='100'>
+						<h3>PIZZA_NAME3</h3>
+						<h3 align="left">$12</h3>
+						<input type="radio" id="option3" name="pizza" value="12" onclick="pizzaChoice()" onFocus="startCalc();" onBlur="stopCalc();">
+				</div>
+			</td>
+			</tr>
+		<br>
+	</table>
+	<table>
+			<tr align="center">
+				<h1>Size</h1>
+				<td width="300px">
+					<input type="radio" id="small" name="size" value="-1" onclick="pizzaChoice()" onFocus="startCalc();" onBlur="stopCalc();">Small
+				</td>
+				<td width="300px">
+					<input type="radio" id="medium" name="size" value="0" checked="true" onclick="pizzaChoice()" onFocus="startCalc();" onBlur="stopCalc();">Medium
+				</td>
+				<td width="300px">
+					<input type="radio" id="large" name="size" value="2" onclick="pizzaChoice()" onFocus="startCalc();" onBlur="stopCalc();">Large
+				</td>
+			</tr>
+	</table>
+	<table>
+		<div class="form-group" align="center">
+		<h1>Toppings</h1>
+		<tr>
+			<td width="300px">
+				<input type="checkbox" id="Avocado" name="toppings" value="1" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="Avocado"> Avocado</label><br>
+				<input type="checkbox" id="Broccoli" name="toppings" value="1" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="Avocado"> Broccoli</label><br>
+				<input type="checkbox" id="Onions" name="toppings" value="1" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="Avocado"> Onions</label><br>
+				<input type="checkbox" id="Zucchini" name="toppings" value="1" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="Avocado"> Zucchini</label><br>
+			</td>
+			<td width="300px">
+				<input type="checkbox" id="Lobster" name="toppings" value="2" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="Lobster"> Lobster</label><br>
+				<input type="checkbox" id="Oyster" name="toppings" value="2" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="pizza2"> Oyster</label><br>
+				<input type="checkbox" id="Salmon" name="toppings" value="2" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="Salmon"> Salmon</label><br>
+				<input type="checkbox" id="Tuna" name="toppings" value="2" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="Tuna"> Tuna</label><br>
+			</td>
+			<td width="300px">
+				<input type="checkbox" id="Bacon" name="toppings" value="3" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="Bacon"> Bacon</label><br>
+				<input type="checkbox" id="Duck" name="toppings" value="3" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="Duck"> Duck</label><br>
+				<input type="checkbox" id="Ham" name="toppings" value="3" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="Duck"> Ham</label><br>
+				<input type="checkbox" id="Sausage" name="toppings" value="3" onclick="autoSum(this);" onFocus="startCalc();" onBlur="stopCalc();">
+				<label for="Sausage"> Sausage</label><br>
+			</td>
+		</tr>
+		</table>
+		<table>
+			<h1>Price</h1>
+		<tr>
+			<td>
+				<input type="textfield" id="price" name="price" value="0" hidden>
+				<input type="textfield" id="price2" name="price2" value="0" hidden>
+				<input type="textfield" id="total" name="total" value="0" hidden>
+				$<input type="textfield" id="total2" name="total2" value="0" readonly>
+			</td>
+		</tr>
+		</table>
+	</form>
+	<script type="text/javascript">
+function pizzaChoice() {
+  var menu = document.querySelectorAll('input[name="pizza"]');
+  var dis = [];
+  let defualt = ['Avocado','Broccoli','Onions','Zucchini','Lobster','Oyster','Salmon','Tuna','Bacon','Duck','Ham','Sausage'];
+  for (let val of defualt) {
+    document.getElementById(val).disabled = false;
+  }
+
+  if (menu[0].checked || menu[1].checked || menu[2].checked) {
+    if (menu[0].checked) {
+      let dis = ['Lobster','Oyster','Salmon','Bacon','Duck','Sausage'];
+      for (let val of dis) {
+        document.getElementById(val).disabled = true;
+      }
+    }
+
+    if (menu[1].checked) {
+      let dis = ['Avocado','Tuna','Sausage']
+      for (let val of dis) {
+        document.getElementById(val).disabled = true;
+      }
+    }
+
+    if (menu[2].checked) {
+      let dis = ['Avocado','Lobster','Oyster','Salmon'];
+      for (let val of dis) {
+        document.getElementById(val).disabled = true;
+      }
+    }
+
+  }
+  }
+</script>
+<script type="text/javascript">
+
+function startCalc(){
+
+interval = setInterval("calc()",1);}
+
+function calc(){
+
+var total=0;
+
+pizza = document.autoSumForm.pizza.value;
+size = document.autoSumForm.size.value;
+total = document.autoSumForm.total.value;
+total2 = document.autoSumForm.total2.value;
+
+document.autoSumForm.price.value = (pizza);
+document.autoSumForm.price2.value = (pizza * 1) + (size * 1);
+document.autoSumForm.total2.value = ((pizza * 1) + (size * 1)) + (total * 1);
+
+}
+function stopCalc(){
+
+clearInterval(interval);}
+
+</script>
+<script type="text/javascript">
+	var total=0;
+function autoSum(elem) {
+  
+    if (elem.checked == true) { 
+		total += Number(elem.value); 
+	}else{
+		total -=Number(elem.value);
+	}
+  
+	document.getElementById('total').value = total.toFixed(0);
+}
+
+</script>
+		</div>
+	</body>
+</html>
